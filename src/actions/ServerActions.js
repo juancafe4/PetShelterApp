@@ -12,6 +12,12 @@ const ServerActions = {
       type: 'RECEIVE_ONE_USER',
       user
     })
+  },
+  getAnimals(animals) {
+    AppDispatcher.dispatch({
+      type: 'RECEIVE_PETS',
+      animals
+    })
   }
 }
 

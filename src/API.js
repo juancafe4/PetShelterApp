@@ -15,8 +15,13 @@ const API = {
       .then(res => res.data)
       .then(user => ServerActions.getOneUser(user))
       .catch(console.error)
-  }
+  },
 
-  getAnimals()
+  getAnimals() {
+    axios.get('api/animals')
+      .then(res => res.data)
+      .then(animals => ServerActions.getAnimals(animals))
+      .catch(console.error)
+  }
 }
 export default API;
