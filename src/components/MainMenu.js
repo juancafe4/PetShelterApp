@@ -28,15 +28,18 @@ class MainMenu extends React.Component {
       if(this.state.user.name) {
         let {name, email} = this.state.user
         let addPet = null
-        if (this.state.user.name === 'admin') 
+        let isAdmin = false
+        if (this.state.user.name === 'admin') {
           addPet = <AddPet />
+          isAdmin = true;
+        }
         return (
            <div className='container'>
             {addPet}
             <h4 className="centered">Name: {name}</h4>
             <h4 className="centered">Email: {email}</h4>
-
-            <DisplayAnimals />
+            <br/><br/>
+            <DisplayAnimals isAdmin={isAdmin}/>
           </div>
         )
       }
