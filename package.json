@@ -9,7 +9,7 @@
     "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors"
   },
   "engine": {
-    "node": "6.3.1"
+    "engines" : { "node" : "6.3.1" }
   },
   "keywords": [],
   "author": "",
