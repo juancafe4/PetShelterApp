@@ -2,6 +2,7 @@ import React from 'react';
 import {FormGroup, FormControl, Button} from 'react-bootstrap';
 import PersonStore from '../stores/PersonStore';
 import PersonActions from '../actions/PersonActions';
+import {browserHistory} from 'react-router';
 
 class NewUser extends React.Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class NewUser extends React.Component {
           email: '',
           user: PersonStore.getOneUser()
         }
+
         this._onChange = this._onChange.bind(this)
         this.signup = this.signup.bind(this);
         this.changeName = this.changeName.bind(this);
@@ -20,9 +22,11 @@ class NewUser extends React.Component {
     signup(e) {
       let {email, name} = this.state;
 
-      if(email && name) 
+      if(email && name) {
         PersonActions.createUser({name, email});
-        
+        browserHistory.push('/mainMenu')
+      }
+           
     }
     componentDidMount() {
       PersonStore.startListenning(this._onChange)
@@ -41,8 +45,7 @@ class NewUser extends React.Component {
       this.setState({email: e.target.value})
     }
     render() {
-        let newUser = this.state.user;
-        console.log('new user ', newUser)
+
         return (
           <form>
             <h3>Create A New Account</h3>

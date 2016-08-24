@@ -3,7 +3,7 @@ import NewUser from './NewUser'
 import {Jumbotron , Button, FormGroup, FormControl} from 'react-bootstrap'
 import PersonStore from '../stores/PersonStore'
 import PersonActions from '../actions/PersonActions'
-
+import {browserHistory} from 'react-router';
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -28,7 +28,6 @@ class Login extends React.Component {
     componentWillUnmount() {
       PersonStore.stopListenning(this._onChange)
     }
-
     _onChange() {
       this.setState({users: PersonStore.getUsers()})
     }
@@ -38,7 +37,7 @@ class Login extends React.Component {
       if (email) {
         let confirm = this.state.users.filter(user => user.email === this.state.email)
         if(confirm.length) {
-          alert('Log in')
+          browserHistory.push('/mainMenu')
         }
         else {
           alert('Wrong email address')
@@ -66,7 +65,7 @@ class Login extends React.Component {
               <h3>or</h3>
             </div>
             <div className="col-xs-6">
-              <NewUser />
+              <NewUser/>
               </div>
             </div>
           </Jumbotron>
