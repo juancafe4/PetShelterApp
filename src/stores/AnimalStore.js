@@ -2,7 +2,7 @@ import AppDispatcher from '../AppDispatcher'
 import {EventEmitter} from 'events'
 
 let _pets = [];
-class AnimalStore() extends EventEmitter {
+class AnimalStore extends EventEmitter {
   constructor() {
     super();
 
@@ -17,14 +17,16 @@ class AnimalStore() extends EventEmitter {
   }
 
   startListening(cb) {
-    this.startListening(cb);
+    this.addListener('CHANGE', cb);
   }
 
   stopListening(cb) {
-    this.removeListener(cb);
+    this.removeListener('CHANGE', cb);
   }
-  
+
   getAll() {
     return _pets;
   }
 }
+
+export default new AnimalStore();

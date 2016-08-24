@@ -3,7 +3,7 @@ import PersonStore from '../stores/PersonStore';
 import PersonActions from '../actions/PersonActions';
 import {Button} from 'react-bootstrap';
 import AddPet from './AddPet';
-
+import DisplayAnimals from './DisplayAnimals'
 class MainMenu extends React.Component {
     constructor(props) {
       super(props);
@@ -35,6 +35,8 @@ class MainMenu extends React.Component {
             {addPet}
             <h4 className="centered">Name: {name}</h4>
             <h4 className="centered">Email: {email}</h4>
+
+            <DisplayAnimals />
           </div>
         )
       }
