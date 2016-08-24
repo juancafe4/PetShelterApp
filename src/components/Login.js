@@ -1,6 +1,8 @@
 import React from 'react';
 import NewUser from './NewUser'
 import {Jumbotron , Button, FormGroup, FormControl} from 'react-bootstrap'
+import PersonStore from '../stores/PersonStore'
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -22,13 +24,6 @@ class Login extends React.Component {
       }
     }
     render() {
-        const style = {
-          height: 100,
-          width: 100,
-          margin: 20,
-          textAlign: 'center',
-          display: 'inline-block',
-        };
         return (
           <Jumbotron>
             <h1>Pet Adoption</h1>
