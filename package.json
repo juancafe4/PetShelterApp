@@ -5,7 +5,8 @@
   "main": "server/app.js",
   "scripts": {
     "start": "node server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "flux": "^2.1.1",
     "font-awesome": "^4.6.3",
     "jquery": "^3.1.0",
+    "jsonwebtoken": "^7.1.9",
     "material-ui": "^0.15.4",
     "mongoose": "^4.5.9",
     "morgan": "^1.7.0",
