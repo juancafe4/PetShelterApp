@@ -1,7 +1,8 @@
-import AppDispatcher from '../AppDispatcher'
-import {EventEmitter} from 'events'
+import AppDispatcher from '../AppDispatcher';
+import {EventEmitter} from 'events';
 
-let _users = []
+let _users = [];
+let _user = {};
 class PersonStore extends EventEmitter{
   constructor() {
     super()
@@ -9,8 +10,13 @@ class PersonStore extends EventEmitter{
     AppDispatcher.register(action => {
       switch(action.type) {
         case 'RECEIVE_USERS':
-          _users = action.users
-          this.emmit('CHANGE')
+          _users = action.users;
+          this.emit('CHANGE');
+          break;
+        case 'RECEIVE_ONE_USER':
+          _users.push(action.user);
+          _user = action.user;
+          this.emit('CHANGE');
           break;
       }
     })
@@ -26,6 +32,10 @@ class PersonStore extends EventEmitter{
 
   getUsers() {
     return _users;
+  }
+
+  getOneUser() {
+    return _user;
   }
 }
 

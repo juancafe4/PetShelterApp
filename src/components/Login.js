@@ -2,25 +2,47 @@ import React from 'react';
 import NewUser from './NewUser'
 import {Jumbotron , Button, FormGroup, FormControl} from 'react-bootstrap'
 import PersonStore from '../stores/PersonStore'
+import PersonActions from '../actions/PersonActions'
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         
         this.state = {
-          email:''
+          users: [],
+          email: ''
         }
-
         this.changeEmail = this.changeEmail.bind(this)
+        this._onChange = this._onChange.bind(this);
+        this.login = this.login.bind(this);
     }
     changeEmail(e) {
       this.setState({email: e.target.value} )
     }
 
+    componentDidMount() {
+      PersonActions.getUsers();
+      PersonStore.startListenning(this._onChange)
+    }
+
+    componentWillUnmount() {
+      PersonStore.stopListenning(this._onChange)
+    }
+
+    _onChange() {
+      this.setState({users: PersonStore.getUsers()})
+    }
     login(e) {
       let {email} = this.state
-      if(email) {
-
+      
+      if (email) {
+        let confirm = this.state.users.filter(user => user.email === this.state.email)
+        if(confirm.length) {
+          alert('Log in')
+        }
+        else {
+          alert('Wrong email address')
+        }
       }
     }
     render() {

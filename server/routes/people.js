@@ -13,4 +13,11 @@ router.route('/')
       res.status(err ? 400 : 200).send(err || person)
     })
   })
+
+router.route('/:id')
+    .delete((req, res) => {
+    Person.findByIdAndRemove(req.params.id, err => {
+      res.status(err ? 400 : 200).send(err);
+    })
+  })
 module.exports = router;

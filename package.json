@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.13.1",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
