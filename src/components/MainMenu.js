@@ -1,6 +1,8 @@
 import React from 'react';
 import PersonStore from '../stores/PersonStore';
 import PersonActions from '../actions/PersonActions';
+import {Button} from 'react-bootstrap';
+import AddPet from './AddPet';
 
 class MainMenu extends React.Component {
     constructor(props) {
@@ -23,8 +25,21 @@ class MainMenu extends React.Component {
       this.setState({user: PersonStore.getOneUser()})
     }
     render() {
-      console.log('main menu ', this.state.user)
-      return <div>MainMenu</div>;
+      if(this.state.user.name) {
+        let {name, email} = this.state.user
+        let addPet = null
+        if (this.state.user.name === 'admin') 
+          addPet = <AddPet />
+        return (
+           <div className='container'>
+            {addPet}
+            <h4 className="centered">Name: {name}</h4>
+            <h4 className="centered">Email: {email}</h4>
+          </div>
+        )
+      }
+      else 
+        return <div className='container'>Loading...</div>
     }
 }
 

@@ -16,5 +16,7 @@ const API = {
       .then(user => ServerActions.getOneUser(user))
       .catch(console.error)
   }
+
+  getAnimals()
 }
 export default API;
