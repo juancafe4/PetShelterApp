@@ -37,6 +37,7 @@ class Login extends React.Component {
       if (email) {
         let confirm = this.state.users.filter(user => user.email === this.state.email)
         if(confirm.length) {
+          PersonStore.setOneUser(confirm[0])
           browserHistory.push('/mainMenu')
         }
         else {

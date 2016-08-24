@@ -34,6 +34,9 @@ class PersonStore extends EventEmitter{
     return _users;
   }
 
+  setOneUser(user) {
+    _user = user;
+  }
   getOneUser() {
     return _user;
   }
