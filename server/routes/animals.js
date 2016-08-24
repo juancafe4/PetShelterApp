@@ -23,6 +23,13 @@ router.get('/:id', (req, res) => {
     res.send(animal)
   }).populate('owner')
 })
+
+router.route('/:id')
+    .delete((req, res) => {
+    Animal.findByIdAndRemove(req.params.id, err => {
+      res.status(err ? 400 : 200).send(err);
+    })
+  })
 router.put('/:animalId/addOwner/:ownerId', (req, res) => {
   Animal.findById(req.params.animalId, (err, animal) => {
     if(err || !animal) {
