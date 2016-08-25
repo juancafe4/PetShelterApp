@@ -3,6 +3,7 @@ const router = express.Router();
 const Person = require('../models/person');
 const Animal = require('../models/animal');
 
+//This is a comment
 router.route('/')
   .get((req, res) => {
     Person.find({}, (err, people) => {
