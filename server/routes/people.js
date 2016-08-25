@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Person = require('../models/person');
-
-const Animal = require('../models/animalModel');
+const Animal = require('../models/animal');
 
 router.route('/')
   .get((req, res) => {
