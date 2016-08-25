@@ -9,7 +9,7 @@
     "postinstall": "webpack --config ./webpack.config.js --progress --colors"
   },
   "engines": {
-    "node" : "v6.3.1" 
+    "node" : "6.3.1" 
   },
   "keywords": [],
   "author": "",
@@ -36,7 +36,9 @@
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.12.2",  
+    "webpack-hot-middleware": "^2.12.2"
+  },
+  "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
