@@ -31,7 +31,7 @@ class DisplayAnimals extends React.Component {
       })
     }
     render() {
-        console.log('rendering at display animals ', this.state.animals)
+       
         if (this.state.animals.length) {
           let petsInAdoption = this.state.animals.filter(animal => !animal.adopted);
           

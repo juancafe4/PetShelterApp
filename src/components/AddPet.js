@@ -75,7 +75,7 @@ class AddPet extends React.Component {
                   <FormControl onChange={this.changeName} value={this.state.name} type="text" placeholder="Name" />
                   <FormControl onChange={this.changeType} value={this.state.type} type="text" placeholder="Type" />
                   <FormControl onChange={this.changeAge} value={this.state.age} type="number" placeholder="Age" />
-                  <FormControl onChange={this.changeImg} value={this.state.img} type="text" placeholder="Iamge" />
+                  <FormControl onChange={this.changeImg} value={this.state.img} type="text" placeholder="Image" />
                 </FormGroup>
                 <Button onClick={this.addPet}type="submit">Submit</Button>
               </Modal.Body>
