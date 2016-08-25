@@ -44,6 +44,22 @@ const API = {
       .then(res => res.data)
       .then(animals => ServerActions.getAnimals(animals))
       .catch(console.error)
+  },
+
+  adopt(personId, animalId) {
+    axios.put('/api/people/adopt/' + personId + '/addPet/' + animalId)
+      .then(res => res.data)
+      .then((user) => {
+        return axios.get('/api/people/' + user._id)
+      })
+      .then(res => res.data)
+      .then (user => {
+        ServerActions.adopt(user);
+        return axios.get('/api/animals')
+      })
+      .then(res => res.data)
+      .then(animals => ServerActions.getAnimals(animals))
+      .catch(console.error)
   }
 }
 export default API;

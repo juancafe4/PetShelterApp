@@ -15,11 +15,17 @@ router.route('/') .post((req, res) => {
     })
   })
 
+
 router.route('/:id')
     .delete((req, res) => {
     Person.findByIdAndRemove(req.params.id, err => {
       res.status(err ? 400 : 200).send(err);
     })
+  })
+    .get((req, res) => {
+    Person.findById(req.params.id, (err, person) => {
+      res.status(err ? 400 : 200).send(err || person);
+    }).populate('pets')
   })
 
 router.put('/adopt/:id/addPet/:petId', (req, res) => {

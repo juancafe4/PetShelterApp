@@ -6,6 +6,9 @@ const PersonActions = {
   },
   createUser(user) {
     API.createUser(user)
+  },
+  adopt(personId, animalId) {
+    API.adopt(personId, animalId);
   }
 }
 

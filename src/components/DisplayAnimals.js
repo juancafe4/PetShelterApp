@@ -3,6 +3,8 @@ import AnimalStore from '../stores/AnimalStore'
 import {Row, Col, Thumbnail, Button} from 'react-bootstrap';
 import React from 'react';
 import EditDeleteAnimal from './EditDeleteAnimal';
+import PersonActions from '../actions/PersonActions';
+import PersonStore from '../stores/PersonStore';
 
 console.log(EditDeleteAnimal)
 class DisplayAnimals extends React.Component {
@@ -10,10 +12,11 @@ class DisplayAnimals extends React.Component {
         super(props);
         
         this.state = {
-          animals : AnimalStore.getAll()
+          animals : AnimalStore.getAll() 
         }
 
         this._onChangeAnimal = this._onChangeAnimal.bind(this);
+        this.adopt = this.adopt.bind(this);
     }
 
     componentDidMount() {
@@ -30,13 +33,17 @@ class DisplayAnimals extends React.Component {
         animals: AnimalStore.getAll()
       })
     }
+
+    adopt(animalId) {
+      PersonActions.adopt(PersonStore.getOneUser()._id, animalId);
+    }
     render() {
        
         if (this.state.animals.length) {
           let petsInAdoption = this.state.animals.filter(animal => !animal.adopted);
           
           let thumbnails = petsInAdoption.map(animal => {
-            let actionBtn = <Button bsStyle="success">Adopt</Button>
+            let actionBtn = <Button onClick={this.adopt.bind(null, animal._id)} bsStyle="success">Adopt</Button>
             if(this.props.isAdmin) 
               actionBtn = <EditDeleteAnimal animal={animal}/>
             return (

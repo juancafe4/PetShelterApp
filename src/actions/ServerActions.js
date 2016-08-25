@@ -24,6 +24,13 @@ const ServerActions = {
       type: 'RECEIVE_ONE_PET',
       animal
     })
+  },
+
+  adopt(user) {
+    AppDispatcher.dispatch({
+      type: 'ADOPT',
+      user
+    })
   }
 }
 

@@ -44,9 +44,9 @@ class RecentlyAdopted extends React.Component {
     }
     render() {
         if(this.state.pets.length) {
-            let thumbnails = this.state.pets.map(animal => {
+            let thumbnails = this.state.pets.map((animal, index) => {
               return (
-                <Col xs={6} md={4} key={animal._id}>
+                <Col xs={6} md={4} key={index + 1}>
                   <Thumbnail src={animal.img}>
                     <h3>Name: {animal.name}</h3>
                     <p>Type: {animal.type}</p>
