@@ -20,15 +20,19 @@ require('mongoose').connect(MONGO_URI, err => {
 // APP DECLARATION
 const app = express();
 
-// WEBPACK CONFIG
-const compiler = webpack(webpackConfig);
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../build')));
+} else {
+  // WEBPACK CONFIG
+  const compiler = webpack(webpackConfig);
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: webpackConfig.output.publicPath
-}));
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath
+  }));
 
-app.use(require('webpack-hot-middleware')(compiler));
+  app.use(require('webpack-hot-middleware')(compiler));
+}
 
 // GENERAL MIDDLEWARE
 app.use(morgan('dev'));
