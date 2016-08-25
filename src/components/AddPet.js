@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Modal, FormGroup, FormControl} from 'react-bootstrap';
+import AnimalActions from '../actions/AnimalActions'
 
 class AddPet extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class AddPet extends React.Component {
     }
 
     changeAge(e){
-      this.setState({name: e.target.value})
+      this.setState({age: e.target.value})
     }
 
     changeImg(e){
@@ -47,7 +48,8 @@ class AddPet extends React.Component {
     addPet() {
       let {name, type, age, img} = this.state
       if (name && type && age && img) {
-        
+        AnimalActions.createAnimal({name, type, age, img})
+        this.close();
       }
     }
     render() {

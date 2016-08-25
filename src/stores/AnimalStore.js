@@ -12,6 +12,10 @@ class AnimalStore extends EventEmitter {
           _pets = action.animals;
           this.emit('CHANGE')
           break;
+        case 'RECEIVE_ONE_PET': 
+          _pets.push(action.animal)
+          this.emit('CHANGE')
+          break;
       }
     })
   }

@@ -18,6 +18,12 @@ const ServerActions = {
       type: 'RECEIVE_PETS',
       animals
     })
+  },
+  createAnimal(animal) {
+    AppDispatcher.dispatch({
+      type: 'RECEIVE_ONE_PET',
+      animal
+    })
   }
 }
 

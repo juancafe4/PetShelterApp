@@ -22,6 +22,13 @@ const API = {
       .then(res => res.data)
       .then(animals => ServerActions.getAnimals(animals))
       .catch(console.error)
+  },
+
+  createAnimal(obj) {
+    axios.post('api/animals', obj)
+      .then(res => res.data)
+      .then(animal => ServerActions.createAnimal(animal))
+      .catch(console.error)
   }
 }
 export default API;
