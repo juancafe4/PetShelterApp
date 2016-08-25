@@ -8,8 +8,6 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const webpack = require('webpack');
-const webpackConfig = require('../webpack.config');
 
 // DB CONNECT
 require('mongoose').connect(MONGO_URI, err => {
@@ -24,6 +22,8 @@ if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../build')));
 } else {
   // WEBPACK CONFIG
+  const webpack = require('webpack');
+  const webpackConfig = require('../webpack.config');
   const compiler = webpack(webpackConfig);
 
   app.use(require('webpack-dev-middleware')(compiler, {
