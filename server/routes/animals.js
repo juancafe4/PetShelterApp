@@ -30,6 +30,18 @@ router.route('/:id')
       res.status(err ? 400 : 200).send(err);
     })
   })
+  .put((req, res) => {
+    Animal.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true}, (err, animal) =>{
+      if(err){
+        return res.status(400).send(err);
+      }
+      Animal.find({}, (err, animal) => {
+        res.status(err ? 400: 200).send(err || animal);
+      })
+    });
+  })
+
+
 router.put('/:animalId/addOwner/:ownerId', (req, res) => {
   Animal.findById(req.params.animalId, (err, animal) => {
     if(err || !animal) {

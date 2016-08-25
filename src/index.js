@@ -5,7 +5,7 @@ import App from './components/App'
 import MainMenu from './components/MainMenu'
 
 import { Router, Route, browserHistory } from 'react-router'
-
+const css = require('./css/style.css')
 render(
   (
   <Router history={browserHistory}>

@@ -5,8 +5,13 @@ const AnimalActions = {
     API.getAnimals();
   },
   createAnimal(obj) {
-    console.log('action ', obj)
     API.createAnimal(obj)
+  },
+  deleteAnimal(id) {
+    API.deleteAnimal(id)
+  },
+  updateAnimal(id ,obj) {
+    API.updateAnimal(id, obj);
   }
 }
 

@@ -29,6 +29,21 @@ const API = {
       .then(res => res.data)
       .then(animal => ServerActions.createAnimal(animal))
       .catch(console.error)
+  },
+
+  deleteAnimal(id, obj) {
+    axios.delete('api/animals/' + id)
+      .then(res => axios.get('api/animals'))
+      .then(res => res.data)
+      .then(animals => ServerActions.getAnimals(animals))
+      .catch(console.error)
+  },
+
+  updateAnimal(id, obj) {
+    axios.put('api/animals/' + id, obj)
+      .then(res => res.data)
+      .then(animals => ServerActions.getAnimals(animals))
+      .catch(console.error)
   }
 }
 export default API;

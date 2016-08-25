@@ -1,21 +1,23 @@
 import React from 'react';
-import {Button, Modal, FormGroup, FormControl} from 'react-bootstrap';
+import {Modal, Button, FormGroup, FormControl} from 'react-bootstrap';
 import AnimalActions from '../actions/AnimalActions'
-
-class AddPet extends React.Component {
+class EditDeleteAnimal extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
           showModal: false,
-          img: '',
-          age: 0,
-          name: '',
-          type:''
+          img: this.props.animal.img,
+          age: this.props.animal.age,
+          name: this.props.animal.name,
+          type:this.props.animal.type
         }
+
+
         this.open = this.open.bind(this);
         this.close = this.close.bind(this);
-        this.addPet = this.addPet.bind(this);
+        this.editPet = this.editPet.bind(this);
+        this.deletePet = this.deletePet.bind(this);
 
         this.changeName = this.changeName.bind(this);
         this.changeType = this.changeType.bind(this);
@@ -45,30 +47,25 @@ class AddPet extends React.Component {
     open() {
       this.setState({ showModal: true });
     }
-    addPet() {
+    editPet() {
       let {name, type, age, img} = this.state
-      if (name && type && age && img) {
-        AnimalActions.createAnimal({name, type, age, img})
-        this.setState({
-          img: '',
-          age: 0,
-          name: '',
-          type:''
-        });
-        this.close();
-      }
+      
+      AnimalActions.updateAnimal(this.props.animal._id, {name, type, age, img})
+      this.close();
+    }
+
+    deletePet() {
+      AnimalActions.deleteAnimal(this.props.animal._id);
+      this.close();
     }
     render() {
-        let btnStyle = {
-          float: 'right'
-        };
-        return (
+       return (
           <div>
-            <Button bsStyle="primary" style={btnStyle} onClick={this.open}>+</Button>
+            <Button bsStyle="primary" onClick={this.open}>Edit</Button>
 
             <Modal show={this.state.showModal} onHide={this.close}>
               <Modal.Header closeButton>
-                <Modal.Title>Enter Pet Information</Modal.Title>
+                <Modal.Title>Edit or Delete Pet</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup>
@@ -77,7 +74,8 @@ class AddPet extends React.Component {
                   <FormControl onChange={this.changeAge} value={this.state.age} type="number" placeholder="Age" />
                   <FormControl onChange={this.changeImg} value={this.state.img} type="text" placeholder="Iamge" />
                 </FormGroup>
-                <Button onClick={this.addPet}type="submit">Submit</Button>
+                <Button onClick={this.deletePet} bsStyle="danger" type="submit">Delete Pet</Button>
+                <Button onClick={this.editPet}type="submit">Edit Pet</Button>
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.close}>Close</Button>
@@ -88,4 +86,4 @@ class AddPet extends React.Component {
     }
 }
 
-export default AddPet;
+export default EditDeleteAnimal;
