@@ -1,6 +1,6 @@
 // CONSTANTS
 const PORT = process.env.PORT || 8000;
-const MONGO_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/SHELTER_DB';
+const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/SHELTER_DB';
 
 // PACKAGE REQUIRES
 const bodyParser = require('body-parser');
